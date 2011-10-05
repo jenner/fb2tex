@@ -1,0 +1,7 @@
+python-beautifulsoup
+python-pytils
+python-imaging
+texlive-xetex
+texlive-fonts-extra
+texlive-lang-cyrillic
+ttf-linux-libertine >= 4.7.5 
