@@ -114,17 +114,24 @@ class Fb2TexConverter(object):
 
     def process_tag(self, tag):
         pass
-        
+
 
 if __name__ == '__main__':
-    usage = "usage: %prog [options]"
+    usage = "usage: %prog <fb2 input file>"
     parser = OptionParser()
     parser.add_option("-i", "--in", dest="fb2",
-                      help="Path to FB2 input file. If omitted the input is read from STDIN", metavar="FB2_FILE")
+        help="Path to FB2 input file", metavar="FB2_FILE")
     parser.add_option("-o", "--out", dest="tex",
-                      help="Output tex file")
+        help="Output tex file. If omitted the output will be written to STDOUT")
+    parser.add_option("-w", "--workspace", dest="workspace",
+        help="Workspace directory. If omitted a temp directory underneath /tmp will be used.")
 
     (options, args) = parser.parse_args()
+    if len(args) != 1:
+        print "ERROR: please provide an FB2 file"
+        sys.exit(1)
+    fb2_file = args[0]
+    workspace = options.workspace
 
-    c = Fb2TexConverter(options.fb2, '/tmp/adsf')
-    c.convert()
+    c = Fb2TexConverter(fb2_file, '/tmp/adsf')
+    #c.convert()
